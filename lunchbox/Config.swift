@@ -126,5 +126,7 @@ enum SocialSignIn: String {
 extension Config {
     func printAllProperties() {
         print("Host URL: \(hostUrl)")
+        
+        print("Environment is: \(environment)")
     }
 }
