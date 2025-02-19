@@ -102,21 +102,7 @@ struct AccountPageView: View {
                     .frame(width: 40, height: 40)
             }
             
-            HStack {
-                Text("Lunchbox's")
-                Button {}
-                label: {
-                    Text("Terms of Service")
-                        .underline()
-                }
-                Text("&")
-                Button {}
-                label: {
-                    Text("Privacy Policy")
-                        .underline()
-                }
-            }
-            .padding()
+            TermsOfServiceView()
         }
     }
 }

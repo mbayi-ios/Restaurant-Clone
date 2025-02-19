@@ -17,7 +17,7 @@ struct RootNavigationView: View {
             icon: Image(systemName: "house"),
             iconSelected: Image(systemName: "house.fill"))
         {
-                tab = .home
+            tab = .home
         }
     }
     
@@ -28,7 +28,7 @@ struct RootNavigationView: View {
             icon: Image(systemName: "cart"),
             iconSelected: Image(systemName: "cart.fill")) {
                 tab = .order
-        }
+            }
     }
     
     private func scanTabItem() -> some View {
@@ -38,7 +38,7 @@ struct RootNavigationView: View {
             icon: Image(systemName: "qrcode"),
             iconSelected: Image(systemName: "qrcode")) {
                 tab = .scan
-        }
+            }
     }
     
     private func rewardsTabItem() -> some View {
@@ -48,7 +48,7 @@ struct RootNavigationView: View {
             icon: Image(systemName: "star"),
             iconSelected: Image(systemName: "star.fill")) {
                 tab = .rewards
-        }
+            }
     }
     
     private func accountTabItem() -> some View {
@@ -58,10 +58,9 @@ struct RootNavigationView: View {
             icon: Image(systemName: "person"),
             iconSelected: Image(systemName: "person.fill")) {
                 tab = .account
-        }
+            }
     }
-    
-   
+
     private func selectedView() -> some View {
         switch tab {
         case .home:
@@ -113,7 +112,7 @@ extension RootNavigationView {
         case scan
     }
     
-   
+    
     struct TabItem: View {
         private let isSelected: Bool
         private let action: () -> Void
