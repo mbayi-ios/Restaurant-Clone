@@ -5,6 +5,7 @@ struct HomeView : View {
     @State var animatedProgress: Double = 0.0
     
     var body: some View {
+        
         BaseNavigationView {
             VStack {
                 HStack {
@@ -124,7 +125,7 @@ struct HomeView : View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.gray)
+                        .background(Color.white)
                         .cornerRadius(10)
                         
                         
@@ -170,7 +171,7 @@ struct HomeView : View {
                             Circle()
                                 .trim(from: 0, to: 10)
                                 .stroke(Color.green, style: StrokeStyle(lineWidth: 25, lineCap: .round)
-                            )
+                                )
                                 .rotationEffect(.degrees(-90))
                                 .animation(.easeOut, value: 10)
                         }
@@ -184,7 +185,7 @@ struct HomeView : View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.gray)
+                    .background(Color.white)
                     .cornerRadius(10)
                     .padding(.horizontal)
                     
@@ -227,19 +228,15 @@ struct HomeView : View {
                             Spacer()
                         }
                     }
-                    .background(Color.gray)
+                    .background(Color.white)
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                     )
                     .padding()
                 }
-                
-                
             }
-            
-            
         }
     }
 }

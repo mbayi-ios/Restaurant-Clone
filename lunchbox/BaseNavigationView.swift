@@ -10,6 +10,7 @@ struct BaseNavigationView<Content: View>: View {
     var body: some View {
         NavigationView {
             content
+                .background(Color.gray.opacity(0.2))
         }
     }
 }
