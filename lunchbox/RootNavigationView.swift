@@ -168,14 +168,6 @@ extension RootNavigationView {
     }
 }
 
-struct OrderPageView : View {
-    var body: some View {
-        VStack {
-            Text("Order View")
-        }
-    }
-}
-
 struct RewardsPageView : View {
     var body: some View {
         VStack {

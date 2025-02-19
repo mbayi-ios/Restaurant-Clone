@@ -17,9 +17,7 @@ struct ContentView: View {
             RootNavigationView()
         }
         
-        
-        
-        // dont remove it
+        // dont remove this
         .onAppear {
             Config.shared.printAllProperties()
         }
