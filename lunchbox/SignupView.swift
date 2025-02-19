@@ -3,30 +3,36 @@ import SwiftUI
 struct SignupView: View {
     @State private var isOn = false
     var body: some View {
-        ScrollView {
-            VStack {
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
-                    .padding()
-                Text("Create Your Account")
-                    .fontWeight(.bold)
-                    .font(.system(size: 26))
-                    .padding(.bottom, 5)
-                
-                HStack{
-                    Text("Dont have an account?")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14))
-                    Button {}
-                    label: {
-                        Text("SIGNIN")
-                            .font(.system(size: 14))
-                            .underline()
-                    }
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                        .padding()
+                    Text("Create Your Account")
+                        .fontWeight(.bold)
+                        .font(.system(size: 26))
+                        .padding(.bottom, 5)
                     
+                    HStack{
+                        Text("Dont have an account?")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 14))
+                        
+                        NavigationLink {
+                            LoginView()
+                                .navigationBarBackButtonHidden(true)
+                        }
+                        label: {
+                            Text("SIGNIN")
+                                .font(.system(size: 14))
+                                .underline()
+                        }
+                    }
                 }
+                
                 VStack(alignment: .leading) {
                     HStack {
                         VStack(alignment: .leading) {
@@ -108,6 +114,7 @@ struct SignupView: View {
                         }
                         .toggleStyle(iOSCheckBoxToggleStyle())
                     }
+                    .padding(.horizontal)
                 }
                 
                 Spacer()
@@ -135,9 +142,10 @@ struct SignupView: View {
                 
             }
         }
-        
     }
+    
 }
+
 
 struct iOSCheckBoxToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {

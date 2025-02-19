@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootNavigationView: View {
     @State var tab: Tab = .home
+    @State private var isLogin: Bool = false
     var body: some View {
         VStack{
             selectedView()
@@ -54,7 +55,7 @@ struct RootNavigationView: View {
     private func accountTabItem() -> some View {
         TabItem(
             isSelected: tab == .account,
-            title: "Account",
+            title: isLogin ? "Account" : "Login",
             icon: Image(systemName: "person"),
             iconSelected: Image(systemName: "person.fill")) {
                 tab = .account
@@ -72,7 +73,11 @@ struct RootNavigationView: View {
         case .scan:
             return AnyView(ScanPageView())
         case .account:
-            return AnyView(AccountPageView())
+            if isLogin {
+                return AnyView(AccountPageView())
+            } else {
+                return AnyView(LoginView())
+            }
             
         }
     }
@@ -89,8 +94,12 @@ struct RootNavigationView: View {
                 HStack {
                     homeTabItem()
                     orderTabItem()
-                    scanTabItem()
-                    rewardsTabItem()
+                    
+                    if isLogin {
+                        scanTabItem()
+                        rewardsTabItem()
+                    }
+                    
                     accountTabItem()
                 }
                 
