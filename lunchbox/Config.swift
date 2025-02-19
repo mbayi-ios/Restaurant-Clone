@@ -97,13 +97,13 @@ class Config {
             return nil
         }
         
-        print("the values \(key.rawValue) -> \(string ?? "nil")")
+       // print("the values \(key.rawValue) -> \(string ?? "nil")")
         return string.replacingOccurrences(of: "\\n", with: "\n")
                                                           
     }
     private func propertyString(for givenBundle: Bundle? = nil, forKey key: Property) -> String {
-        let allKeys = (givenBundle ?? bundle).infoDictionary?.keys
-        print("All available info keys: \(String(describing: allKeys))")
+       // let allKeys = (givenBundle ?? bundle).infoDictionary?.keys
+       // print("All available info keys: \(String(describing: allKeys))")
         
         guard let string = safePropertyString(for: givenBundle, forKey: key) else {
             fatalError("Info dictionary must specify a String for key \"\(key)\".")

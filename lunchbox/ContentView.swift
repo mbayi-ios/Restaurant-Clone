@@ -1,27 +1,46 @@
-//
-//  ContentView.swift
-//  lunchbox
-//
-//  Created by Ambrose Mbayi on 18/02/2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    @AppStorage("didShowWalkthrough", store: .standard) var didShowWalkthrough = false
+    
+    @State private var didShowSplash = false
+    
+    private var isOnboardingPresented: Binding<Bool> {
+        Binding {
+            !didShowWalkthrough
+        } set: { value in
+            didShowWalkthrough = !value
         }
-        .padding()
+    }
+    var body: some View {
+        BaseView {
+            RootNavigationView()
+        }
+        
+        
+        
+        // dont remove it
         .onAppear {
             Config.shared.printAllProperties()
         }
     }
 }
 
-#Preview {
-    ContentView()
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
 }
