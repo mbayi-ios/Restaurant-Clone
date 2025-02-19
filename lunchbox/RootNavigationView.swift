@@ -80,7 +80,7 @@ struct RootNavigationView: View {
     
     private func tabBar() -> some View {
         ZStack {
-            Color.red
+            Color.white
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -140,14 +140,14 @@ extension RootNavigationView {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(isSelected ? .orange : .white)
+                        .foregroundColor(isSelected ? .red : .black)
                     Text(title)
                         .font(.system(size: 12))
                         .fontWeight(.medium)
-                        .foregroundColor(isSelected ? .orange : .white)
+                        .foregroundColor(isSelected ? .red : .black)
                 }
             }
-            .foregroundColor(.yellow)
+            .foregroundColor(.black)
             .frame(maxWidth: .infinity)
             .frame(height: 40)
             .padding(.vertical, 4)
@@ -159,9 +159,6 @@ extension RootNavigationView {
         
     }
 }
-
-
-
 
 struct OrderPageView : View {
     var body: some View {
@@ -175,14 +172,6 @@ struct RewardsPageView : View {
     var body: some View {
         VStack {
             Text("Rewards View")
-        }
-    }
-}
-
-struct AccountPageView : View {
-    var body: some View {
-        VStack {
-            Text("Account View")
         }
     }
 }
