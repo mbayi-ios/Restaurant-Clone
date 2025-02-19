@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Login: View {
+struct LoginView: View {
     var body: some View {
         VStack {
             Image("logo")
@@ -19,7 +19,7 @@ struct Login: View {
                     .font(.system(size: 14))
                 Button {}
                 label: {
-                    Text("Create Account")
+                    Text("CREATE ACCOUNT")
                         .font(.system(size: 14))
                         .underline()
                 }
@@ -28,10 +28,10 @@ struct Login: View {
             VStack(alignment: .leading) {
                 
                 VStack(alignment: .leading) {
-                    Text("Login")
+                    Text("Email Address")
                         .fontWeight(.bold)
                         .font(.system(size: 16))
-                    TextField("Email", text: .constant("hel"))
+                    TextField("Email", text: .constant(""))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 .padding()
@@ -40,7 +40,7 @@ struct Login: View {
                     Text("Password")
                         .fontWeight(.bold)
                         .font(.system(size: 16))
-                    TextField("Password", text: .constant("12438"))
+                    TextField("Password", text: .constant(""))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 .padding(.top, -20)
@@ -94,5 +94,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login()
+    LoginView()
 }
