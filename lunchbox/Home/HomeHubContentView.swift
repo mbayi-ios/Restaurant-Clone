@@ -1,0 +1,48 @@
+import SwiftUI
+
+struct HomeHubContentView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Image("food-3")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(10, corners: [.topLeft, .topRight])
+            VStack(alignment: .leading, spacing: 11) {
+                Text("Loyalty Program")
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 16)
+                
+                Text("Our program is Free to join and simple way to ear perks just by eating the food you love. Earn $5 for every 75 points you earn")
+                    .font(.system(size: 14))
+                    .lineLimit(3)
+                    .padding(.horizontal, 16)
+            }
+            
+            HStack {
+                Button {
+                    
+                } label : {
+                    Text("Learn More")
+                        .foregroundColor(.white)
+                        .fontWeight(.medium)
+                        .font(.system(size: 15))
+                }
+                .frame(width: 150, height: 30)
+                .background(Color.brand)
+                .cornerRadius(50)
+                .padding(.leading, 16)
+                .padding(.bottom, 16)
+                
+                Spacer()
+            }
+        }
+        .background(Color.white)
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+        )
+        .padding()
+    }
+}

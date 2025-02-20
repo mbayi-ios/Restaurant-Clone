@@ -11,7 +11,6 @@ struct AccountPageView: View {
                         .padding()
                     Divider()
                     
-                    
                     VStack {
                         NavigationLink(destination: ProfilePageView()) {
                             HStack {
@@ -70,7 +69,7 @@ struct AccountPageView: View {
                             label: {
                                 Text("LOGOUT")
                                     .fontWeight(.medium)
-                                    .font(.system(size: 15))
+                                    .font(.system(size: 13))
                                     .underline()
                                     .foregroundColor(Color.brand)
                             }
