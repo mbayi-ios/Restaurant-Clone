@@ -15,7 +15,7 @@ struct OrderPageView : View {
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                     VStack {
-                        NavigationLink(destination: SignupView()) {
+                        NavigationLink(destination: NewLocationSelectView()) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Delivery")
@@ -35,7 +35,7 @@ struct OrderPageView : View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         
-                        NavigationLink(destination: SignupView()) {
+                        NavigationLink(destination: NewLocationSelectView()) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Pick-Up")
@@ -55,7 +55,7 @@ struct OrderPageView : View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         
-                        NavigationLink(destination: SignupView()) {
+                        NavigationLink(destination: NewLocationSelectView()) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Drive-Thru")
@@ -75,7 +75,7 @@ struct OrderPageView : View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         
-                        NavigationLink(destination: SignupView()) {
+                        NavigationLink(destination: NewLocationSelectView()) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Curbside Pickup")
@@ -95,7 +95,7 @@ struct OrderPageView : View {
                         }
                         .buttonStyle(PlainButtonStyle())
                         
-                        NavigationLink(destination: SignupView()) {
+                        NavigationLink(destination: NewLocationSelectView()) {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Catering Pickup")
