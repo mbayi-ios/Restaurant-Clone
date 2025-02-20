@@ -49,7 +49,7 @@ struct HomeView : View {
                 }
                 
                 .padding()
-                .background(Color.gray)
+                .background(Color.gray.opacity(0.5))
                 .cornerRadius(10)
                 .padding(.horizontal)
                 
