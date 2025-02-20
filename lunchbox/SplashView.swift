@@ -1,6 +1,9 @@
 import SwiftUI
+import Combine
 
 struct SplashView: View {
+    @Environment(\.dependencies.tasks) var tasks
+    @State private var cancellables = Set<AnyCancellable>()
     @Binding var splashCompleted: Bool
     var body: some View {
         ZStack {
@@ -23,7 +26,27 @@ struct SplashView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 splashCompleted = true
             }
+            fetchConfiguration()
         }
+    }
+    
+    private func fetchConfiguration() {
+        tasks.initialize(GetThemeConfigurationTask.self)
+            .execute()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { response in
+                switch response {
+                case .finished:
+                    print("splash finished")
+                    
+                case .failure(let error):
+                    _ = error
+                }
+            }, receiveValue: { response in
+                
+            })
+            .store(in: &cancellables)
+        
     }
 }
 

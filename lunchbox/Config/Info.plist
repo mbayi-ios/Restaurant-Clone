@@ -6,6 +6,10 @@
 	<string>$(ENVIRONMENT)</string>
 	<key>Host URL</key>
 	<string>$(HOST_URL)</string>
+	<key>Tenant</key>
+	<string>$(TENANT)</string>
+	<key>Novadine API Key</key>
+	<string>$(NOVADINE_API_KEY)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

@@ -12,3 +12,5 @@
 #include "Client.xcconfig"
 
 ENVIRONMENT = production
+
+NOVADINE_API_KEY = 3011c280-5c80-11ed-99ec-f23c918b87aa

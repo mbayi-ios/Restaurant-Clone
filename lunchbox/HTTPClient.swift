@@ -142,6 +142,7 @@ class HTTPClient: NetworkClient {
         cancelDuplicateRequest(for: urlRequest)
         
         urlRequest.cUrlLogDebug()
+        print("ehhlo")
         
         return execute(urlRequest)
             .decode(type: Request.Response.self, decoder: decoder)

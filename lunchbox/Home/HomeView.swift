@@ -4,6 +4,8 @@ struct HomeView : View {
     @State var progress: Double = 10
     @State var animatedProgress: Double = 0.0
     
+    @Environment(\.dependencies.state.themeConfigurationState.themeConfiguration?.settings?.hubMarketing) var hubMarketing
+    
     var body: some View {
         
         BaseNavigationView {
@@ -191,7 +193,15 @@ struct HomeView : View {
                     .padding(.horizontal)
                     
                     // hubmarketing
-                    HomeHubContentView()
+                    if let hubMarketing = hubMarketing {
+                        ForEach(hubMarketing.indices, id: \.self) { index in
+                            HomeHubContentView(hubMarketing: hubMarketing[index])
+                        }
+                        
+                    }
+                }
+                .onAppear {
+                    print("the hubs are \(hubMarketing)")
                 }
             }
         }
