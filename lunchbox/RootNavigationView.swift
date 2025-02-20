@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RootNavigationView: View {
     @State var tab: Tab = .home
-    @State private var isLogin: Bool = false
+    @State private var isLogin: Bool = true
     var body: some View {
         VStack{
             selectedView()
