@@ -190,9 +190,6 @@ struct HomeView : View {
                     .cornerRadius(10)
                     .padding(.horizontal)
                     
-                    
-                    
-                    
                     // hubmarketing
                     HomeHubContentView()
                 }

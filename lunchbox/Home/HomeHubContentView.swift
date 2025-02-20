@@ -1,6 +1,21 @@
 import SwiftUI
 
 struct HomeHubContentView: View {
+    
+    private let title: String?
+    private let description: String?
+    private let imageUrl: String?
+    private let buttonText: String?
+    private let buttonUrlString: String?
+    
+    init(hubMarketing: ThemeConfiguration.Settings.HubMarketing) {
+        title = hubMarketing.title
+        description = hubMarketing.description
+        imageUrl = hubMarketing.image
+        buttonText = hubMarketing.buttonText
+        buttonUrlString = hubMarketing.buttonURL
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Image("food-3")
