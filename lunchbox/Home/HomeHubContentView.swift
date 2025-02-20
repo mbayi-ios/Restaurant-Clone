@@ -23,15 +23,19 @@ struct HomeHubContentView: View {
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(10, corners: [.topLeft, .topRight])
             VStack(alignment: .leading, spacing: 11) {
-                Text("Loyalty Program")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 16)
+                if let title = title {
+                    Text(title)
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 16)
+                }
                 
-                Text("Our program is Free to join and simple way to ear perks just by eating the food you love. Earn $5 for every 75 points you earn")
-                    .font(.system(size: 14))
-                    .lineLimit(3)
-                    .padding(.horizontal, 16)
+                if let description = description {
+                    Text(description)
+                        .font(.system(size: 14))
+                        .lineLimit(3)
+                        .padding(.horizontal, 16)
+                }
             }
             
             HStack {
