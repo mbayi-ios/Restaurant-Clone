@@ -148,11 +148,11 @@ extension RootNavigationView {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(isSelected ? .red : .black)
+                        .foregroundColor(isSelected ? .brand : .black)
                     Text(title)
                         .font(.system(size: 12))
                         .fontWeight(.medium)
-                        .foregroundColor(isSelected ? .red : .black)
+                        .foregroundColor(isSelected ? .brand : .black)
                 }
             }
             .foregroundColor(.black)

@@ -77,7 +77,7 @@ struct HomeView : View {
                     .frame(maxWidth: .infinity)
                     .frame( height: 50)
                     .foregroundColor(.white)
-                    .background(Color.red)
+                    .background(Color.brand)
                     .cornerRadius(50)
                     .padding()
                     
@@ -118,7 +118,7 @@ struct HomeView : View {
                                 }
                                 .foregroundColor(.white)
                                 .frame(width: 200, height: 35)
-                                .background(Color.red)
+                                .background(Color.brand)
                                 .cornerRadius(50)
                             }
                             
@@ -136,8 +136,9 @@ struct HomeView : View {
                     HStack {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("AM")
+                                .foregroundColor(.white)
                                 .padding(8)
-                                .background(Color.yellow)
+                                .background(Color.brand)
                                 .clipShape(Circle())
                             
                             VStack {
@@ -161,16 +162,16 @@ struct HomeView : View {
                             
                             .padding()
                             .frame(height: 30)
-                            .background(Color.red)
+                            .background(Color.brand)
                             .cornerRadius(50)
                             
                         }
                         ZStack {
                             Circle()
-                                .stroke(Color.red, lineWidth: 25)
+                                .stroke(Color.brand, lineWidth: 25)
                             Circle()
                                 .trim(from: 0, to: 10)
-                                .stroke(Color.green, style: StrokeStyle(lineWidth: 25, lineCap: .round)
+                                .stroke(Color.brand, style: StrokeStyle(lineWidth: 25, lineCap: .round)
                                 )
                                 .rotationEffect(.degrees(-90))
                                 .animation(.easeOut, value: 10)
@@ -220,7 +221,7 @@ struct HomeView : View {
                                     .font(.system(size: 15))
                             }
                             .frame(width: 150, height: 30)
-                            .background(Color.red)
+                            .background(Color.brand)
                             .cornerRadius(50)
                             .padding(.leading, 16)
                             .padding(.bottom, 16)

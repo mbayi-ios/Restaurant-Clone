@@ -6,5 +6,10 @@
 	<string>$(ENVIRONMENT)</string>
 	<key>Host URL</key>
 	<string>$(HOST_URL)</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>Brand</string>
+	</dict>
 </dict>
 </plist>

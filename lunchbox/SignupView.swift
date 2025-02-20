@@ -78,7 +78,7 @@ struct SignupView: View {
                         Text("Birthday (Optional)")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
-                        TextField("(+) Add Mobile Number", text: .constant(""))
+                        TextField("DD/MM/YYYY", text: .constant(""))
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .padding()
@@ -136,7 +136,7 @@ struct SignupView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
-                .background(Color.red)
+                .background(Color.brand)
                 .cornerRadius(50)
                 .padding(.horizontal)
                 

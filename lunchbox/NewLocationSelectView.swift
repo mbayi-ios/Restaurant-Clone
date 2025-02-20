@@ -30,7 +30,7 @@ struct NewLocationSelectView: View {
                         Text("Show All Locations")
                             .frame(maxWidth: .infinity)
                             .frame(height: 40)
-                            .background(Color.red)
+                            .background(Color.brand)
                             .cornerRadius(10)
                             .foregroundColor(.white)
                             .padding(.horizontal)
@@ -77,7 +77,7 @@ struct NewLocationSelectView: View {
                                 .font(.system(size: 14))
                         }
                     }
-                    .foregroundColor(.red)
+                    .foregroundColor(.brand)
                     .padding()
                 }
                 .frame(maxWidth: .infinity)

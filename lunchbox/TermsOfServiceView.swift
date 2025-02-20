@@ -3,7 +3,7 @@ import SwiftUI
 struct TermsOfServiceView: View {
     var body: some View {
         HStack {
-            Text("Lunchbox's")
+            Text("SnackSnap's")
             Button {}
             label: {
                 Text("Terms of Service")

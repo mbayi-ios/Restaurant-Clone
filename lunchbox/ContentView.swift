@@ -14,7 +14,11 @@ struct ContentView: View {
     }
     var body: some View {
         BaseView {
-            RootNavigationView()
+            if didShowSplash {
+                RootNavigationView()
+            } else {
+                SplashView(splashCompleted: $didShowSplash)
+            }
         }
         
         // dont remove this
