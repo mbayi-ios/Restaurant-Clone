@@ -142,7 +142,7 @@ class HTTPClient: NetworkClient {
         cancelDuplicateRequest(for: urlRequest)
         
         urlRequest.cUrlLogDebug()
-        print("ehhlo")
+        print("network call is being made")
         
         return execute(urlRequest)
             .decode(type: Request.Response.self, decoder: decoder)

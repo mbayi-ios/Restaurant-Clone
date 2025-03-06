@@ -52,6 +52,7 @@ struct DependencyContainer: EnvironmentKey {
         let repositories = Repositories()
         
         repositories.register(ThemeConfigurationRepository(client: client, store: themeConfigurationStore))
+        repositories.register(CustomerRepository(client: client))
         
         return Self(
             tasks: Tasks(repositories: repositories),

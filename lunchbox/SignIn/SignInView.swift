@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SignInView: View {
+    @StateObject var viewModel = SignInViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -35,7 +37,7 @@ struct SignInView: View {
                         Text("Email Address")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
-                        TextField("Email", text: .constant(""))
+                        TextField("Email", text: $viewModel.model.email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .padding()
@@ -44,7 +46,7 @@ struct SignInView: View {
                         Text("Password")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
-                        TextField("Password", text: .constant(""))
+                        TextField("Password", text: $viewModel.model.password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .padding(.top, -20)
@@ -85,7 +87,7 @@ struct SignInView: View {
                 TermsOfServiceView()
                 
                 Button {
-                    
+                    viewModel.handleSignIn()
                 } label: {
                     Text("Sign In")
                         .fontWeight(.bold)

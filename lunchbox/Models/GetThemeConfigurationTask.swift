@@ -15,6 +15,19 @@ protocol TaskCombineNoninjectable: Task, TaskCombine {
     func execute() -> AnyPublisher<CombineResponse, Error>
 }
 
+protocol TaskModelInjectable: Task {
+    associatedtype Model
+}
+
+protocol TaskInjectable: TaskModelInjectable {
+    func execute(with object: Model)
+}
+
+protocol TaskCombineInjectable: TaskModelInjectable, TaskCombine {
+    func execute(with object: Model) -> AnyPublisher<CombineResponse, Error>
+    
+}
+
 struct GetThemeConfigurationTask: TaskCombineNoninjectable {
     typealias Model = String
     typealias RepositoryType = ThemeConfigurationRepository
