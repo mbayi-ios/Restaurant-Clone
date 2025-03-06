@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LoginView: View {
+struct SignInView: View {
     var body: some View {
         NavigationView {
             VStack {
@@ -103,5 +103,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    SignInView()
 }

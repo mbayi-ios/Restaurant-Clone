@@ -76,7 +76,7 @@ struct RootNavigationView: View {
             if isLogin {
                 return AnyView(AccountPageView())
             } else {
-                return AnyView(LoginView())
+                return AnyView(SignInView())
             }
             
         }

@@ -22,7 +22,7 @@ struct SignupView: View {
                             .font(.system(size: 14))
                         
                         NavigationLink {
-                            LoginView()
+                            SignInView()
                                 .navigationBarBackButtonHidden(true)
                         }
                         label: {
