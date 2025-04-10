@@ -32,7 +32,6 @@ struct ThemeConfigurationStore {
         guard let data = UserDefaults.standard.data(forKey: ThemeConfigurationStore.themeConfigurationKey),
               let configuration = try? decoder.decode(ThemeConfiguration.self, from: data) else {
             return nil
-            print("data not found")
         }
         
         return configuration
@@ -57,7 +56,7 @@ class ThemeConfigurationState: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { configuration in
                 self.themeConfiguration = configuration
-                print("hey this is configuration \(configuration)")
+              //  print("hey this is configuration \(configuration)")
             }.store(in: &cancellables)
     }
 }

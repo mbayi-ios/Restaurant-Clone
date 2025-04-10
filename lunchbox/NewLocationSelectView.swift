@@ -3,7 +3,12 @@ import UIKit
 import MapKit
 
 struct NewLocationSelectView: View {
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+//    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    
+    @State private var region = MapCameraPosition.region(MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868),
+            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        ))
     
     var body: some View {
         ZStack {
@@ -16,7 +21,7 @@ struct NewLocationSelectView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                     
-                    Map(coordinateRegion: $region)
+                    Map(position: $region)
                         .frame(width: 400, height: 300)
                 }
                 

@@ -2,9 +2,13 @@ import SwiftUI
 import Combine
 
 class SplashViewModel: ObservableObject {
-    @Environment(\.dependencies.tasks) var tasks
+    private var tasks: Tasks
+    
     @State private var cancellables = Set<AnyCancellable>()
     
+    init(tasks: Tasks) {
+        self.tasks = tasks
+    }
     
     func fetchConfiguration() {
         tasks.initialize(GetThemeConfigurationTask.self)
@@ -26,7 +30,8 @@ class SplashViewModel: ObservableObject {
     
 }
 struct SplashView: View {
-    @State var viewModel = SplashViewModel()
+    @Environment(\.dependencies.tasks) var tasks
+    @State var viewModel: SplashViewModel?
     
     @Binding var splashCompleted: Bool
     var body: some View {
@@ -47,10 +52,14 @@ struct SplashView: View {
             
         }
         .onAppear {
+            if viewModel == nil {
+                viewModel = SplashViewModel(tasks: tasks)
+                viewModel?.fetchConfiguration()
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 splashCompleted = true
             }
-            viewModel.fetchConfiguration()
+            
         }
     }
     

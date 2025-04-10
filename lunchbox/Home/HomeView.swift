@@ -201,7 +201,7 @@ struct HomeView : View {
                     }
                 }
                 .onAppear {
-                    print("the hubs are \(hubMarketing)")
+                    print("the hubs are \(String(describing: hubMarketing))")
                 }
             }
         }

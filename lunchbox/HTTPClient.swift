@@ -97,13 +97,13 @@ extension HTTPMessageContextual {
     }
 }
 
-class HTTPClientEncoder: JSONEncoder {
+class HTTPClientEncoder: JSONEncoder, @unchecked Sendable {
     override init() {
         super.init()
     }
 }
 
-class HTTPClientDecoder: JSONDecoder {
+class HTTPClientDecoder: JSONDecoder, @unchecked Sendable {
     override init() {
         super.init()
     }
@@ -220,7 +220,7 @@ extension HTTPClient {
     }
     
     private func saveCookies(from headers: [String: String], url: URL) {
-        let cookie = HTTPCookie.cookies(withResponseHeaderFields: headers, for: url)
+        _ = HTTPCookie.cookies(withResponseHeaderFields: headers, for: url)
         
         // Fix ME:
         /*for lbcookie in LBCookies.allCases {

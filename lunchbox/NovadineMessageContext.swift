@@ -34,7 +34,7 @@ class NovadineMessageContext: HTTPMessageContextual {
     
     var headers: [String: String]
     {
-        var contextHeaders = [
+        let contextHeaders = [
             HTTPClient.HeaderKey.contentType.rawValue: "application/json",
             HTTPClient.HeaderKey.novadineApiKey.rawValue: Config.shared.novadineApiKey,
             HTTPClient.HeaderKey.acceptEncoding.rawValue: "gzip"
@@ -62,7 +62,7 @@ class NovadineMessageContext: HTTPMessageContextual {
     }
     
     var noAuthHeaders : [String: String] {
-        var contextHeaders = [
+        let contextHeaders = [
             HTTPClient.HeaderKey.contentType.rawValue: "application/json",
             HTTPClient.HeaderKey.novadineApiKey.rawValue: Config.shared.novadineApiKey,
             HTTPClient.HeaderKey.acceptEncoding.rawValue: "gzip"

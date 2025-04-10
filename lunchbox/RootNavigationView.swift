@@ -134,7 +134,7 @@ extension RootNavigationView {
             self.action = action
             self.isSelected = isSelected
             self.iconDefault = icon
-            self.iconSelected = iconSelected ?? icon
+            self.iconSelected = iconSelected
             self.tabIcon = tabIcon
             self.title = title
         }
