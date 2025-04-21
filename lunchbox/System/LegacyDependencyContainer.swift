@@ -29,12 +29,38 @@ struct Tasks {
 }
 
 struct AppState {
+    let sessionStore: SessionStore
     let themeConfigurationState: ThemeConfigurationState
     let themeConfigurationStore: ThemeConfigurationStore
     
-    init(themeConfigurationStore: ThemeConfigurationStore) {
+    let authStatus: AuthStatus
+    
+    init(sessionStore: SessionStore, themeConfigurationStore: ThemeConfigurationStore) {
+        self.sessionStore = sessionStore
         self.themeConfigurationState = ThemeConfigurationState(themeConfigurationStore: themeConfigurationStore)
         self.themeConfigurationStore = themeConfigurationStore
+        
+        self.authStatus = AuthStatus(sessionStore: sessionStore)
+    }
+}
+
+protocol KeyStore {
+    func set(value: Any, for key: String) -> Void
+    func get(_ key: String)-> Any?
+    func clearValue(for key: String) -> Void
+}
+
+struct DefaultKeyStore: KeyStore {
+    func get(_ key: String) -> Any? {
+        UserDefaults.standard.object(forKey: key)
+    }
+    
+    func set(value: Any, for key: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    func clearValue(for key: String) {
+        UserDefaults.standard.removeObject(forKey: key)
     }
 }
 
@@ -45,6 +71,8 @@ struct DependencyContainer: EnvironmentKey {
     static var defaultValue: Self { Self.default}
     
     private static var `default` : Self = {
+        let keyStore = DefaultKeyStore()
+        let sessionStore = SessionStore(keyStore: keyStore)
         let context = NovadineMessageContext()
         let client = HTTPClient(context: context)
         let themeConfigurationStore = ThemeConfigurationStore()
@@ -56,7 +84,7 @@ struct DependencyContainer: EnvironmentKey {
         
         return Self(
             tasks: Tasks(repositories: repositories),
-            state: AppState(themeConfigurationStore: themeConfigurationStore)
+            state: AppState(sessionStore: sessionStore, themeConfigurationStore: themeConfigurationStore)
         )
     }()
     

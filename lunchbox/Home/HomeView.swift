@@ -4,6 +4,8 @@ struct HomeView : View {
     @State var progress: Double = 10
     @State var animatedProgress: Double = 0.0
     
+    @Binding var isShowingLogin: Bool
+    
     @Environment(\.dependencies.state.themeConfigurationState.themeConfiguration?.settings?.hubMarketing) var hubMarketing
     
     var body: some View {
@@ -208,10 +210,3 @@ struct HomeView : View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
-        HomeView()
-    }
-}

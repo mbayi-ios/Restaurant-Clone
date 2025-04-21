@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Environment(\.dependencies.tasks) var tasks
     @State private var isOn = false
     var body: some View {
         NavigationView {

@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct RootNavigationView: View {
+    @Environment(\.dependencies.tasks) var tasks
+    
     @State var tab: Tab = .home
-    @State private var isLogin: Bool = false
+    @State private var isShowingLogin: Bool = false
+    
     var body: some View {
         VStack{
             selectedView()
@@ -11,16 +14,6 @@ struct RootNavigationView: View {
         .ignoresSafeArea(.keyboard)
     }
     
-    private func homeTabItem() -> some View {
-        TabItem(
-            isSelected: tab == .home,
-            title: "Home",
-            icon: Image(systemName: "house"),
-            iconSelected: Image(systemName: "house.fill"))
-        {
-            tab = .home
-        }
-    }
     
     private func orderTabItem() -> some View {
         TabItem(
@@ -55,7 +48,7 @@ struct RootNavigationView: View {
     private func accountTabItem() -> some View {
         TabItem(
             isSelected: tab == .account,
-            title: isLogin ? "Account" : "Login",
+            title: isShowingLogin ? "Account" : "Login",
             icon: Image(systemName: "person"),
             iconSelected: Image(systemName: "person.fill")) {
                 tab = .account
@@ -65,7 +58,7 @@ struct RootNavigationView: View {
     private func selectedView() -> some View {
         switch tab {
         case .home:
-            return AnyView(HomeView())
+            return AnyView(HomeView(isShowingLogin: $isShowingLogin))
         case .rewards:
             return AnyView(RewardsPageView())
         case .order:
@@ -73,12 +66,7 @@ struct RootNavigationView: View {
         case .scan:
             return AnyView(ScanPageView())
         case .account:
-            if isLogin {
-                return AnyView(AccountPageView())
-            } else {
-                return AnyView(SignInView())
-            }
-            
+            return AnyView(AccountPageView())
         }
     }
     
@@ -92,10 +80,20 @@ struct RootNavigationView: View {
                     .foregroundColor(.pink)
                 
                 HStack {
-                    homeTabItem()
+                    TabItem(
+                        isSelected: tab == .home,
+                        title: "Home",
+                        icon: Image(systemName: "house"),
+                        iconSelected: Image(systemName: "house.fill"))
+                    {
+                        tab = .home
+                        if isShowingLogin {
+                            isShowingLogin = false
+                        }
+                    }
                     orderTabItem()
                     
-                    if isLogin {
+                    if isShowingLogin {
                         scanTabItem()
                         rewardsTabItem()
                     }

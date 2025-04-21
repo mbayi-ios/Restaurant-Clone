@@ -6,6 +6,7 @@ class SignInViewModel: ObservableObject {
     @Published var model = SignInModel()
     @Published var isLoading: Bool = false
     
+    
     var dismissalPublisher = PassthroughSubject<Bool, Never>()
     private var shouldDismissView = false {
         didSet {
@@ -29,7 +30,7 @@ class SignInViewModel: ObservableObject {
                 }
             }, receiveValue: { response in
                 self.getCustomerMe()
-                    print("success")
+                    print("success login")
             }))
     }
     

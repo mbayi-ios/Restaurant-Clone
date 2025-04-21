@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.dependencies.state) var appState
     @AppStorage("didShowWalkthrough", store: .standard) var didShowWalkthrough = false
     
     @State private var didShowSplash = false
@@ -16,6 +17,7 @@ struct ContentView: View {
         BaseView {
             if didShowSplash {
                 RootNavigationView()
+                    .environmentObject(appState.authStatus)
             } else {
                 SplashView(splashCompleted: $didShowSplash)
             }
