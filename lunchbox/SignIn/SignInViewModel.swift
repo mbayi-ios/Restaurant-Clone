@@ -8,6 +8,7 @@ class SignInViewModel: ObservableObject {
     
     
     var dismissalPublisher = PassthroughSubject<Bool, Never>()
+
     private var shouldDismissView = false {
         didSet {
             dismissalPublisher.send(shouldDismissView)
@@ -25,10 +26,12 @@ class SignInViewModel: ObservableObject {
                 switch response {
                 case .finished:
                     break
+                    
                 case .failure(let error):
                     print("the error is \(error)")
                 }
             }, receiveValue: { response in
+                self.dismissalPublisher.send(true)
                 self.getCustomerMe()
                     print("success login")
             }))

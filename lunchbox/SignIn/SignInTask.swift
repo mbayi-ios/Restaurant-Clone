@@ -1,10 +1,6 @@
 import Combine
 import Foundation
 
-struct SignInTaskModel {
-    let email: String
-    let password: String
-}
 
 struct SignInTask: TaskCombineInjectable {
     

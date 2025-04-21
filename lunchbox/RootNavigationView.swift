@@ -166,18 +166,5 @@ extension RootNavigationView {
     }
 }
 
-struct RewardsPageView : View {
-    var body: some View {
-        VStack {
-            Text("Rewards View")
-        }
-    }
-}
 
-struct ScanPageView : View {
-    var body: some View {
-        VStack {
-            Text("Scan View")
-        }
-    }
-}
+

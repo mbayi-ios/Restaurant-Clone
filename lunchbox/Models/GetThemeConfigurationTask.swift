@@ -1,11 +1,7 @@
 import Foundation
 import Combine
 
-protocol Task {
-    associatedtype RepositoryType: Repository
-    
-    init(repository: RepositoryType)
-}
+
 
 protocol TaskCombine {
     associatedtype CombineResponse
@@ -21,6 +17,10 @@ protocol TaskModelInjectable: Task {
 
 protocol TaskInjectable: TaskModelInjectable {
     func execute(with object: Model)
+}
+
+protocol TaskNoninjectable: Task {
+    func execute()
 }
 
 protocol TaskCombineInjectable: TaskModelInjectable, TaskCombine {
@@ -47,9 +47,7 @@ struct GetThemeConfigurationTask: TaskCombineNoninjectable {
     }
 }
 
-struct GetThemeConfigurationPayload: Encodable {
-    
-}
+
 
 struct GetThemeConfigurationResponse: Decodable {
     let data: AssetData?
@@ -90,40 +88,5 @@ extension ThemeConfiguration.Settings.HubMarketing {
     }
 }
 
-struct GetThemeConfigurationRequest: HTTPRequest {
-    typealias Payload = GetThemeConfigurationPayload
-    typealias Response = GetThemeConfigurationResponse
-    
-    let path: HTTPEndpoint = NovadineEndpoint.theme_config
-    
-    let method = HTTPMethod.GET
-    var body: Payload?
-}
 
-protocol Repository {
-    
-}
 
-class ThemeConfigurationRepository: Repository {
-    private let client: HTTPClient
-    private let store: ThemeConfigurationStore
-    
-    init(client: HTTPClient, store: ThemeConfigurationStore) {
-        self.client = client
-        self.store = store
-    }
-    
-    func getThemeConfiguration() -> AnyPublisher<ThemeConfiguration, Error> {
-        let request = GetThemeConfigurationRequest()
-        
-        return client.perform(request).tryMap { response in
-            let configuration = ThemeConfiguration(response: response.data)
-            print("configuration")
-            
-           self.store.storeThemeConfiguration(configuration)
-            
-            return configuration
-            
-        }.eraseToAnyPublisher()
-    }
-}

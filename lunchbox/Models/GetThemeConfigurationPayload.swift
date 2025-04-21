@@ -1,0 +1,3 @@
+struct GetThemeConfigurationPayload: Encodable {
+    
+}
