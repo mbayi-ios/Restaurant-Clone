@@ -1,9 +1,7 @@
 import SwiftUI
 import Foundation
 
-class AccountPageModel: ModelProtocol {
-    
-}
+
 
 class AccountPageViewModel: ViewModelProtocol {
    

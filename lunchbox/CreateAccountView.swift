@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SignupView: View {
+struct CreateAccountView: View {
     @Environment(\.dependencies.tasks) var tasks
     @State private var isOn = false
     var body: some View {
@@ -164,7 +164,7 @@ struct iOSCheckBoxToggleStyle: ToggleStyle {
 }
 
 #Preview {
-    SignupView()
+    CreateAccountView()
 }
 
 

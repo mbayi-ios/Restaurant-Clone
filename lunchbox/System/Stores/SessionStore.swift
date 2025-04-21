@@ -7,6 +7,7 @@ struct SessionStore {
     private var keyStore: KeyStore
     
     var currentCustomer = CurrentValueSubject<Customer?, Never>(nil)
+    var currentAuthToken = CurrentValueSubject<String?, Never>(nil)
     
     init(keyStore: KeyStore) {
         self.keyStore = keyStore

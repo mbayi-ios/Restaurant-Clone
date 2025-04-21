@@ -13,6 +13,7 @@ struct DependencyContainer: EnvironmentKey {
         let context = NovadineMessageContext()
         let client = HTTPClient(context: context)
         let themeConfigurationStore = ThemeConfigurationStore()
+        let storesConfigurationStore = StoresConfigurationStore()
         
         let repositories = Repositories()
         
@@ -21,8 +22,12 @@ struct DependencyContainer: EnvironmentKey {
         
         return Self(
             tasks: Tasks(repositories: repositories),
-            state: AppState(sessionStore: sessionStore, themeConfigurationStore: themeConfigurationStore)
+            state: AppState(sessionStore: sessionStore,
+                            themeConfigurationStore: themeConfigurationStore,
+                            storesConfigurationStore: storesConfigurationStore)
         )
     }()
     
 }
+
+

@@ -2,40 +2,10 @@ import Foundation
 import Combine
 import SwiftUI
 
-protocol HTTPRequestHeaders {
-    var headers: [String: String] { get }
-}
 
-protocol HTTPRequestQueryItems {
-    var queryItems: [URLQueryItem] { get }
-}
 
-protocol HTTPEndpoint {
-    var base: String { get }
-    var location: String { get }
-}
 
-extension HTTPEndpoint {
-    var endpoint: String {
-        return "\(base)\(location)"
-    }
-}
 
-enum HTTPMethod: String {
-    case POST
-    case GET
-    case PUT
-    case DELETE
-}
-
-protocol HTTPRequest {
-    associatedtype Payload: Encodable
-    associatedtype Response: Decodable
-    
-    var method: HTTPMethod { get }
-    var path: HTTPEndpoint { get }
-    var body: Payload? { get }
-}
 
 protocol NetworkClient {
     func perform<Request: HTTPRequest>(_ request: Request, shouldSendAuthCookie: Bool) -> AnyPublisher<Request.Response, Error>
@@ -45,44 +15,6 @@ enum LBCookies: String, CaseIterable {
     case bffAuthToken = "__ac"
     case sessionToken = "Novadine.session"
     case routerId = "ROUTE_ID"
-}
-
-struct URLSchemeConstants {
-    static let http = "http://"
-    static let https = "https://"
-}
-
-enum URLScheme: RawRepresentable {
-    typealias RawValue = String
-    
-    init?(rawValue: String) {
-        switch rawValue {
-        case URLSchemeConstants.http:
-            self = .http
-            
-        case URLSchemeConstants.https:
-            self = .https
-            
-        default:
-            self = .custom(rawValue)
-        }
-    }
-    
-    var rawValue: String {
-        switch self {
-        case .http:
-            return URLSchemeConstants.http
-            
-        case .https:
-            return URLSchemeConstants.https
-        case .custom(let string):
-            return string
-        }
-    }
-    
-    case http
-    case https
-    case custom(String)
 }
 
 

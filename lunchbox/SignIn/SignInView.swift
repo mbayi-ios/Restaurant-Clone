@@ -4,6 +4,8 @@ struct SignInView: View {
     @Environment(\.dependencies.tasks) var tasks
     @Environment(\.dismiss) var dismiss
     
+    
+    
     var nestedNavigationAction: (() -> Void) = {}
     @ObservedObject var viewModel = SignInViewModel()
     
@@ -27,17 +29,24 @@ struct SignInView: View {
             .navigationBarBackButtonHidden(true)
         }
         else if isSignInNestedNavigationView {
-            self.navBarLogo()
-                .padding(.leading, 8)
-            contentView()
-                .onReceive(viewModel.dismissalPublisher) { shouldDismiss in
-                    print("Dismissal triggered")
-                    nestedNavigationAction()
-                    dismiss()
-                }
+            VStack(alignment: .leading) {
+//                self.navBarLogo()
+//                    .padding(.leading, 8)
+                contentView()
+                    .onReceive(viewModel.dismissalPublisher) { shouldDismiss in
+                        print("Dismissal triggered")
+                        nestedNavigationAction()
+                        dismiss()
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+            }
         }
         else  {
             VStack {
+//                HStack {
+//                   // navBarLogo()
+//                    Spacer()
+//                }
                 contentView()
             }
             .onReceive(viewModel.dismissalPublisher) { shouldDismiss in
@@ -66,7 +75,7 @@ struct SignInView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 14))
                 NavigationLink {
-                    SignupView()
+                    CreateAccountView()
                         .navigationBarBackButtonHidden(true)
                 }
                 label: {

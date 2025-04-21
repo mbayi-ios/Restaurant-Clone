@@ -1,46 +1,45 @@
 import SwiftUI
 
-class Repositories {
-    private var repositories = [String: Repository]()
+struct StoresConfiguration: Codable, Equatable {
+    let guestGreeting: String?
+}
+
+class StoresConfigurationState: ObservableObject {
+    @Published private(set) var storesConfiguration: StoresConfiguration?
     
-    func register<R: Repository> (_ reporsitory: R) {
-        repositories["\(R.self)"] = reporsitory
-    }
+    private let storesConfigurationStore: StoresConfigurationStore
     
-    func resolve<R: Repository>(_ repositoryType: R.Type) -> R {
-        guard let repository = repositories["\(R.self)"] as? R else {
-            fatalError("Attempting to access a repository that hasnt been registered inside DependencyContainer")
-        }
-        
-        return repository
+    init(storesConfigurationStore: StoresConfigurationStore) {
+        self.storesConfigurationStore = storesConfigurationStore
     }
 }
-struct Tasks {
-    private let repositories: Repositories
+
+struct StoresConfigurationStore {
     
-    init(repositories: Repositories) {
-        self.repositories = repositories
-    }
-    
-    func initialize<T: Task> (_ type: T.Type) -> T {
-        let repository = repositories.resolve(T.RepositoryType.self)
-        return T(repository: repository)
-    }
 }
 
 struct AppState {
     let sessionStore: SessionStore
-    let themeConfigurationState: ThemeConfigurationState
     let themeConfigurationStore: ThemeConfigurationStore
+    let storesConfigurationStore: StoresConfigurationStore
+    
+    let themeConfigurationState: ThemeConfigurationState
+    let storesConfigurationState: StoresConfigurationState
+    
     
     let authStatus: AuthStatus
     
-    init(sessionStore: SessionStore, themeConfigurationStore: ThemeConfigurationStore) {
+    init(sessionStore: SessionStore, themeConfigurationStore: ThemeConfigurationStore, storesConfigurationStore: StoresConfigurationStore) {
         self.sessionStore = sessionStore
-        self.themeConfigurationState = ThemeConfigurationState(themeConfigurationStore: themeConfigurationStore)
+        
         self.themeConfigurationStore = themeConfigurationStore
+        self.storesConfigurationStore = storesConfigurationStore
+        
+        self.themeConfigurationState = ThemeConfigurationState(themeConfigurationStore: themeConfigurationStore)
+        self.storesConfigurationState = StoresConfigurationState(storesConfigurationStore: storesConfigurationStore)
         
         self.authStatus = AuthStatus(sessionStore: sessionStore)
+       
     }
 }
 

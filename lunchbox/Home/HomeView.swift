@@ -1,4 +1,7 @@
 import SwiftUI
+import Combine
+
+
 
 struct HomeView : View {
     @State var progress: Double = 10
@@ -7,23 +10,42 @@ struct HomeView : View {
     @Binding var isShowingLogin: Bool
     
     @Environment(\.dependencies.state.themeConfigurationState.themeConfiguration?.settings?.hubMarketing) var hubMarketing
+    @Environment(\.dependencies.state.storesConfigurationState.storesConfiguration) var storesConfiguration
+    
+    @EnvironmentObject var authStatus: AuthStatus
+    @EnvironmentObject var sessionCustomer: SessionCustomer
+    
+    private func cartSection() -> some View {
+        Image(systemName: "cart.fill")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 25, height: 25)
+    }
+    
+    private func headerSection() -> some View  {
+        HStack {
+            if let greeting = storesConfiguration?.guestGreeting {
+                Text(greeting)
+                    .fontWeight(.bold)
+                    .font(.system(size: 30))
+            } else {
+                Text(String.localizedStringWithFormat(NSLocalizedString("Welcome", comment: "You"), authStatus.isLoggedIn ?
+                                                      sessionCustomer.customer?.firstName ?? String(localized: "Welcome Guest") :
+                                                        String(localized: "Welcome Guest")))
+            }
+           
+            Spacer()
+            
+            cartSection()
+        }
+        .padding(.horizontal)
+    }
     
     var body: some View {
         
         BaseNavigationView {
-            VStack {
-                HStack {
-                    Text("Hi Amby!")
-                        .fontWeight(.bold)
-                        .font(.system(size: 30))
-                    Spacer()
-                    
-                    Image(systemName: "cart.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 25, height: 25)
-                }
-                .padding(.horizontal)
+            VStack(alignment: .leading) {
+                headerSection()
                 
                 VStack {
                     HStack {
