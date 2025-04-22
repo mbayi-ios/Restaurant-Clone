@@ -13,6 +13,7 @@
 		CD51CE5A2DB7D81200D647FD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE592DB7D81200D647FD /* AppState.swift */; };
 		CD51CE5C2DB7D81E00D647FD /* StoresConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */; };
 		CD51CE5E2DB7D82E00D647FD /* StoresConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */; };
+		CD51CE632DB7DB3B00D647FD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD51CE612DB7DB3B00D647FD /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		CD51CE592DB7D81200D647FD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfigurationState.swift; sourceTree = "<group>"; };
 		CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfiguration.swift; sourceTree = "<group>"; };
+		CD51CE622DB7DB3B00D647FD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -57,9 +59,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD51CE642DB8189600D647FD /* LunchboxUI */ = {
+			isa = PBXGroup;
+			children = (
+				CD51CE652DB818A200D647FD /* Resources */,
+			);
+			path = LunchboxUI;
+			sourceTree = "<group>";
+		};
+		CD51CE652DB818A200D647FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD51CE612DB7DB3B00D647FD /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CD9608052D64B18200D946CD = {
 			isa = PBXGroup;
 			children = (
+				CD51CE642DB8189600D647FD /* LunchboxUI */,
 				CD9608102D64B18200D946CD /* lunchbox */,
 				CD0096962D6797B900B5697D /* lunchbox.app */,
 				CD51CE532DB7D7DE00D647FD /* StoresConfigurationStore.swift */,
@@ -135,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD51CE632DB7DB3B00D647FD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +175,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CD51CE612DB7DB3B00D647FD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD51CE622DB7DB3B00D647FD /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CD240D062D65B54200166CA2 /* Debug - Development */ = {
