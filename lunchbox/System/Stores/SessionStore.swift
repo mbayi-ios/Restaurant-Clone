@@ -81,6 +81,14 @@ struct SessionStore {
     }
     
     func clear() {
+        keyStore.clearValue(for: SessionStore.currentCustomer)
+        keyStore.clearValue(for: SessionStore.customerAuthorizationKey)
+        keyStore.clearValue(for: SessionStore.sessionKey)
+        keyStore.clearValue(for: SessionStore.routeKey)
+        
         currentCustomer.send(nil)
+        currentAuthToken.send(nil)
+        currentSessionToken.send(nil)
+        currentRouteId.send(nil)
     }
 }
