@@ -1,11 +1,7 @@
-//
-//  AccountPageModel.swift
-//  lunchbox
-//
-//  Created by Ambrose Mbayi on 21/04/2025.
-//
 
+import SwiftUI
 
 class AccountPageModel: ModelProtocol {
+    @Environment(\.dependencies.state.sessionCustomer.customer) var customer
     
 }

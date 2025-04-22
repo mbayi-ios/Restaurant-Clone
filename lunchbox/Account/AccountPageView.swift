@@ -25,7 +25,7 @@ struct AccountPageView: ViewProtocol {
     private func contentView() -> some View  {
         VStack {
             VStack {
-                Text("Amby Mbayi")
+                Text(viewModel.titleText)
                     .fontWeight(.bold)
                     .font(.system(size: 24))
                     .padding()

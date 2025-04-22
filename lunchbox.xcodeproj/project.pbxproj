@@ -6,8 +6,23 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CD51CE542DB7D7DE00D647FD /* StoresConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE532DB7D7DE00D647FD /* StoresConfigurationStore.swift */; };
+		CD51CE562DB7D7EC00D647FD /* DefaultKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE552DB7D7EC00D647FD /* DefaultKeyStore.swift */; };
+		CD51CE582DB7D80100D647FD /* KeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE572DB7D80100D647FD /* KeyStore.swift */; };
+		CD51CE5A2DB7D81200D647FD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE592DB7D81200D647FD /* AppState.swift */; };
+		CD51CE5C2DB7D81E00D647FD /* StoresConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */; };
+		CD51CE5E2DB7D82E00D647FD /* StoresConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		CD0096962D6797B900B5697D /* lunchbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lunchbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD51CE532DB7D7DE00D647FD /* StoresConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfigurationStore.swift; sourceTree = "<group>"; };
+		CD51CE552DB7D7EC00D647FD /* DefaultKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeyStore.swift; sourceTree = "<group>"; };
+		CD51CE572DB7D80100D647FD /* KeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStore.swift; sourceTree = "<group>"; };
+		CD51CE592DB7D81200D647FD /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfigurationState.swift; sourceTree = "<group>"; };
+		CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -47,6 +62,12 @@
 			children = (
 				CD9608102D64B18200D946CD /* lunchbox */,
 				CD0096962D6797B900B5697D /* lunchbox.app */,
+				CD51CE532DB7D7DE00D647FD /* StoresConfigurationStore.swift */,
+				CD51CE552DB7D7EC00D647FD /* DefaultKeyStore.swift */,
+				CD51CE572DB7D80100D647FD /* KeyStore.swift */,
+				CD51CE592DB7D81200D647FD /* AppState.swift */,
+				CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */,
+				CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +145,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD51CE542DB7D7DE00D647FD /* StoresConfigurationStore.swift in Sources */,
+				CD51CE582DB7D80100D647FD /* KeyStore.swift in Sources */,
+				CD51CE5C2DB7D81E00D647FD /* StoresConfigurationState.swift in Sources */,
+				CD51CE5E2DB7D82E00D647FD /* StoresConfiguration.swift in Sources */,
+				CD51CE562DB7D7EC00D647FD /* DefaultKeyStore.swift in Sources */,
+				CD51CE5A2DB7D81200D647FD /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

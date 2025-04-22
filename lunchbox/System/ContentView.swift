@@ -18,6 +18,7 @@ struct ContentView: View {
             if didShowSplash {
                 RootNavigationView()
                     .environmentObject(appState.authStatus)
+                    .environmentObject(appState.sessionCustomer)
             } else {
                 SplashView(splashCompleted: $didShowSplash)
             }

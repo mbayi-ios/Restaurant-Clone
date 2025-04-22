@@ -1,67 +1,39 @@
 import SwiftUI
 
-struct StoresConfiguration: Codable, Equatable {
-    let guestGreeting: String?
-}
+import SwiftUI
+import Combine
 
-class StoresConfigurationState: ObservableObject {
-    @Published private(set) var storesConfiguration: StoresConfiguration?
+struct DependencyContainer: EnvironmentKey {
+    let tasks: Tasks
+    let state: AppState
     
-    private let storesConfigurationStore: StoresConfigurationStore
+    static var defaultValue: Self { Self.default}
     
-    init(storesConfigurationStore: StoresConfigurationStore) {
-        self.storesConfigurationStore = storesConfigurationStore
-    }
-}
-
-struct StoresConfigurationStore {
-    
-}
-
-struct AppState {
-    let sessionStore: SessionStore
-    let themeConfigurationStore: ThemeConfigurationStore
-    let storesConfigurationStore: StoresConfigurationStore
-    
-    let themeConfigurationState: ThemeConfigurationState
-    let storesConfigurationState: StoresConfigurationState
-    
-    
-    let authStatus: AuthStatus
-    
-    init(sessionStore: SessionStore, themeConfigurationStore: ThemeConfigurationStore, storesConfigurationStore: StoresConfigurationStore) {
-        self.sessionStore = sessionStore
+    private static var `default` : Self = {
+        let keyStore = DefaultKeyStore()
+        let sessionStore = SessionStore(keyStore: keyStore)
+        let context = NovadineMessageContext(sessionStore: sessionStore)
+        let client = HTTPClient(context: context)
+        let themeConfigurationStore = ThemeConfigurationStore()
+        let storesConfigurationStore = StoresConfigurationStore()
         
-        self.themeConfigurationStore = themeConfigurationStore
-        self.storesConfigurationStore = storesConfigurationStore
+        let repositories = Repositories()
         
-        self.themeConfigurationState = ThemeConfigurationState(themeConfigurationStore: themeConfigurationStore)
-        self.storesConfigurationState = StoresConfigurationState(storesConfigurationStore: storesConfigurationStore)
+        repositories.register(ThemeConfigurationRepository(client: client, store: themeConfigurationStore))
+        repositories.register(CustomerRepository(client: client, sessionStore: sessionStore))
         
-        self.authStatus = AuthStatus(sessionStore: sessionStore)
-       
-    }
+        return Self(
+            tasks: Tasks(repositories: repositories),
+            state: AppState(sessionStore: sessionStore,
+                            themeConfigurationStore: themeConfigurationStore,
+                            storesConfigurationStore: storesConfigurationStore)
+        )
+    }()
+    
 }
 
-protocol KeyStore {
-    func set(value: Any, for key: String) -> Void
-    func get(_ key: String)-> Any?
-    func clearValue(for key: String) -> Void
-}
 
-struct DefaultKeyStore: KeyStore {
-    func get(_ key: String) -> Any? {
-        UserDefaults.standard.object(forKey: key)
-    }
-    
-    func set(value: Any, for key: String) {
-        UserDefaults.standard.set(value, forKey: key)
-    }
-    
-    func clearValue(for key: String) {
-        UserDefaults.standard.removeObject(forKey: key)
-    }
-}
+
 
 
 

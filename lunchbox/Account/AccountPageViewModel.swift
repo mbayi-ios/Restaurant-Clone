@@ -9,6 +9,15 @@ class AccountPageViewModel: ViewModelProtocol {
     
     @Published var model = AccountPageModel()
     
+    var titleText: String {
+        guard let firstName = self.model.customer?.firstName,
+              let lastName = self.model.customer?.lastName else {
+            return String(localized: "Title")
+        }
+        
+        return "\(firstName) \(lastName)"
+    }
+    
     func handleLogoutRequest() {
         let task = tasks.initialize(SignOutTask.self)
         task.execute()
