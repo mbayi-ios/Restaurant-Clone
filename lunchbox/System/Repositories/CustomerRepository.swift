@@ -41,7 +41,8 @@ struct CustomerRepository: Repository {
         let request = GetCustomerMeRequest()
         
         return client.perform(request).tryMap { response in
-            _ = Customer(response: response)
+            let customer = Customer(response: response)
+            sessionStore.storeCurrentCustomer(customer)
             return true
         }.eraseToAnyPublisher()
     }

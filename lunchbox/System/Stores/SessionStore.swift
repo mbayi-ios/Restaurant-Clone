@@ -37,6 +37,14 @@ struct SessionStore {
         currentRouteId.send(routeId)
     }
     
+    func storeCurrentCustomer(_ customer: Customer) {
+        guard let encodedCustomer = try? JSONEncoder().encode(customer) else{
+            return
+        }
+        keyStore.set(value: encodedCustomer, for: SessionStore.currentCustomer)
+        currentCustomer.send(customer)
+    }
+    
     func storeCustomerAuhtorization(token: String) {
         keyStore.set(value: token, for: SessionStore.customerAuthorizationKey)
         

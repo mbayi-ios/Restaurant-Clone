@@ -11,7 +11,7 @@ struct BaseNavigationView<Content: View>: View {
         NavigationView {
             DefaultSurface {
                 content
-                    .background(Color.gray.opacity(0.2))
+                    .navigationBarColor(backgroundColor: UIColor(Color.red))
             }
         }
     }
@@ -27,6 +27,9 @@ struct DefaultSurface<Content: View>: View {
     
     var body: some View {
         content
-            .background(Color.gray.opacity(0.2))
+            .background(Color.gray.opacity(0.1))
+            
     }
 }
+
+

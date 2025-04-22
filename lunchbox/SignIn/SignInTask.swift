@@ -1,7 +1,6 @@
 import Combine
 import Foundation
 
-
 struct SignInTask: TaskCombineInjectable {
     
     typealias RepositoryType = CustomerRepository
