@@ -24,15 +24,9 @@ struct HomeView : View {
     
     private func headerSection() -> some View  {
         HStack {
-            if let greeting = storesConfiguration?.guestGreeting {
-                Text(greeting)
-                    .fontWeight(.bold)
-                    .font(.system(size: 30))
-            } else {
-                Text(String.localizedStringWithFormat(NSLocalizedString("Welcome", comment: "You"), authStatus.isLoggedIn ?
-                                                      sessionCustomer.customer?.firstName ?? String(localized: "Welcome Guest") :
-                                                        String(localized: "Welcome Guest")))
-            }
+            
+            Text(String.localizedStringWithFormat(NSLocalizedString("HomePage.Label.WelcomeMessage", comment: "HomePage.Label.WelcomeMessage"), authStatus.isLoggedIn ? sessionCustomer.customer?.firstName ?? String(localized: "HomePage.Label.WelcomeMessageGuest") : String(localized: "HomePage.Label.WelcomeMessageGuest")))
+            
            
             Spacer()
             
