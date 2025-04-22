@@ -10,7 +10,7 @@ struct DependencyContainer: EnvironmentKey {
     private static var `default` : Self = {
         let keyStore = DefaultKeyStore()
         let sessionStore = SessionStore(keyStore: keyStore)
-        let context = NovadineMessageContext()
+        let context = NovadineMessageContext(sessionStore: sessionStore)
         let client = HTTPClient(context: context)
         let themeConfigurationStore = ThemeConfigurationStore()
         let storesConfigurationStore = StoresConfigurationStore()

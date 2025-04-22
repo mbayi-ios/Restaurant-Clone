@@ -2,11 +2,6 @@ import Foundation
 import Combine
 import SwiftUI
 
-
-
-
-
-
 protocol NetworkClient {
     func perform<Request: HTTPRequest>(_ request: Request, shouldSendAuthCookie: Bool) -> AnyPublisher<Request.Response, Error>
 }
@@ -14,15 +9,12 @@ protocol NetworkClient {
 enum LBCookies: String, CaseIterable {
     case bffAuthToken = "__ac"
     case sessionToken = "Novadine.session"
-    case routerId = "ROUTE_ID"
+    case routeId = "ROUTE_ID"
 }
 
-
-
-
-
-
 class HTTPClient: NetworkClient {
+    @Environment(\.dependencies.tasks) var tasks
+    
     private static let badRequestHttpStatusCode = 400
     
     private let context: HTTPMessageContextual
@@ -84,8 +76,6 @@ class HTTPClient: NetworkClient {
             }
             .eraseToAnyPublisher()
     }
-    
-    
 }
 
 extension HTTPClient {
@@ -133,10 +123,10 @@ extension HTTPClient {
     }
     
     private func saveCookies(from headers: [String: String], url: URL) {
-        _ = HTTPCookie.cookies(withResponseHeaderFields: headers, for: url)
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: url)
         
         // Fix ME:
-        /*for lbcookie in LBCookies.allCases {
+        for lbcookie in LBCookies.allCases {
             if let responseCookie = cookies.first(where: { $0.name == lbcookie.rawValue }) {
                 switch lbcookie {
                 case .bffAuthToken:
@@ -150,7 +140,7 @@ extension HTTPClient {
                     task.execute(with: "\(responseCookie.name)=\(responseCookie.value)")
                 }
             }
-        } */
+        }
     }
     
     private func cancelDuplicateRequest(for urlRequest: URLRequest) {
@@ -171,3 +161,5 @@ extension HTTPClient {
         return (value.range(of: "<(\"[^\"]*\"|'[^']*'|[^'\">])*>", options: .regularExpression) != nil)
     }
 }
+
+

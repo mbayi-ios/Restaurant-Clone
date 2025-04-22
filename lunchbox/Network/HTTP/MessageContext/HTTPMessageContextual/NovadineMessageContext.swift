@@ -25,6 +25,7 @@ class NovadineMessageContext: HTTPMessageContextual {
         ]
         
         var cookie = ""
+        
         if let authToken = authToken {
             cookie = authToken
         }
@@ -66,6 +67,28 @@ class NovadineMessageContext: HTTPMessageContextual {
 //        }
         
         return contextHeaders
+    }
+    
+    private let sessionStore: SessionStore
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init(sessionStore: SessionStore) {
+        self.sessionStore = sessionStore
+        
+        sessionStore.currentAuthToken
+            .sink { token in
+                self.authToken = token
+            }.store(in: &cancellables)
+        
+        sessionStore.currentSessionToken
+            .sink { token in
+                self.sessionToken = token
+            }.store(in: &cancellables)
+        
+        sessionStore.currentRouteId
+            .sink { token in
+                self.routeId = token
+            }.store(in: &cancellables)
     }
     
 

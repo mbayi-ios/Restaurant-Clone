@@ -18,7 +18,9 @@ class SignInViewModel: ObservableObject {
     }
     
     func handleSignIn() {
-        let taskModel = SignInTask.Model(email: model.email, password: model.password, deviceToken: sessionStore.currentAuthToken.value )
+        let taskModel = SignInTask.Model(email: model.email,
+                                         password: model.password,
+                                         deviceToken: sessionStore.currentAuthToken.value)
         
         let task = tasks.initialize(SignInTask.self)
         
@@ -33,7 +35,6 @@ class SignInViewModel: ObservableObject {
                     print("the error is \(error)")
                 }
             }, receiveValue: { response in
-                self.dismissalPublisher.send(true)
                 self.getCustomerMe()
                     print("success login")
             }))

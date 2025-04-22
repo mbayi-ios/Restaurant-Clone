@@ -31,6 +31,23 @@ struct SessionStore {
         currentDeviceToken.send(storedDeviceToken())
     }
     
+    func storeRouteId(routeId: String) {
+        keyStore.set(value: routeId, for: SessionStore.routeKey)
+        
+        currentRouteId.send(routeId)
+    }
+    
+    func storeCustomerAuhtorization(token: String) {
+        keyStore.set(value: token, for: SessionStore.customerAuthorizationKey)
+        
+        currentAuthToken.send(token)
+    }
+    
+    func storeSessionToken(token: String ) {
+        keyStore.set(value: token, for: SessionStore.sessionKey)
+        currentSessionToken.send(token)
+    }
+    
     func storedDeviceToken() -> String? {
         return keyStore.get(SessionStore.customerDeviceTokenKey) as? String
     }
