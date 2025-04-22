@@ -3,9 +3,6 @@ import Combine
 import Foundation
 
 
-
-
-
 struct AccountPageView: ViewProtocol {
     @EnvironmentObject var authStatus: AuthStatus
    // @EnvironmentObject var sessionCustomer: SessionCustomer

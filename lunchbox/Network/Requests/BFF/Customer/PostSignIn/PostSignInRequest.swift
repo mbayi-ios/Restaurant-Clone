@@ -10,9 +10,3 @@ struct PostSignInRequest: HTTPRequest {
     let method = HTTPMethod.POST
     var body: Payload?
 }
-
-extension PostSignInRequest.Payload {
-    init(taskModel: SignInTaskModel) {
-        self.init(email: taskModel.email, password: taskModel.password)
-    }
-}

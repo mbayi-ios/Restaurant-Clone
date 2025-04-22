@@ -3,6 +3,8 @@ import Combine
 
 class SignInViewModel: ObservableObject {
     @Environment(\.dependencies.tasks) var tasks
+    @Environment(\.dependencies.state.sessionStore) var sessionStore
+    
     @Published var model = SignInModel()
     @Published var isLoading: Bool = false
     
@@ -16,7 +18,7 @@ class SignInViewModel: ObservableObject {
     }
     
     func handleSignIn() {
-        let taskModel = SignInTask.Model(email: model.email, password: model.password)
+        let taskModel = SignInTask.Model(email: model.email, password: model.password, deviceToken: sessionStore.currentAuthToken.value )
         
         let task = tasks.initialize(SignInTask.self)
         

@@ -11,6 +11,7 @@ struct SignInView: View {
     
     var isSignInRootView: Bool = false
     var isSignInNestedNavigationView: Bool = false
+    var isSecondInStack: Bool = false
     
     var body: some View {
         if isSignInRootView {
@@ -28,10 +29,10 @@ struct SignInView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)
         }
-        else if isSignInNestedNavigationView {
+        /*else if isSignInNestedNavigationView {
             VStack(alignment: .leading) {
-//                self.navBarLogo()
-//                    .padding(.leading, 8)
+                self.navBarLogo()
+                    .padding(.leading, 8)
                 contentView()
                     .onReceive(viewModel.dismissalPublisher) { shouldDismiss in
                         print("Dismissal triggered")
@@ -43,10 +44,10 @@ struct SignInView: View {
         }
         else  {
             VStack {
-//                HStack {
-//                   // navBarLogo()
-//                    Spacer()
-//                }
+                HStack {
+                    navBarLogo()
+                    Spacer()
+                }
                 contentView()
             }
             .onReceive(viewModel.dismissalPublisher) { shouldDismiss in
@@ -56,9 +57,10 @@ struct SignInView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
+        */
     }
     
-    private func contentView() -> some View {
+    private func headerLabel() -> some View {
         VStack {
             Image("logo")
                 .resizable()
@@ -69,22 +71,50 @@ struct SignInView: View {
                 .fontWeight(.bold)
                 .font(.system(size: 26))
                 .padding(.bottom, 5)
-            
-            HStack{
-                Text("Dont have an account?")
-                    .foregroundColor(.gray)
-                    .font(.system(size: 14))
-                NavigationLink {
-                    CreateAccountView()
-                        .navigationBarBackButtonHidden(true)
-                }
-                label: {
-                    Text("CREATE ACCOUNT")
-                        .font(.system(size: 14))
-                        .underline()
-                }
-                
+        }
+    }
+    private func createAccountLabel() -> some View  {
+        HStack{
+            Text("Dont have an account?")
+                .foregroundColor(.gray)
+                .font(.system(size: 14))
+            NavigationLink {
+                CreateAccountView()
+                    .navigationBarBackButtonHidden(true)
             }
+            label: {
+                Text("CREATE ACCOUNT")
+                    .font(.system(size: 14))
+                    .underline()
+            }
+            
+        }
+    }
+    private func createAccountButton() -> some View  {
+        Group {
+            if isSecondInStack {
+                Button {
+                    dismiss()
+                    nestedNavigationAction()
+                } label: {
+                    createAccountLabel()
+                }
+            } else {
+                NavigationLink(destination: BaseView {
+                    CreateAccountView()
+                }) {
+                    createAccountLabel()
+                }
+            }
+        }
+    }
+    
+    private func contentView() -> some View {
+        VStack {
+            headerLabel()
+            
+           createAccountButton()
+            
             VStack(alignment: .leading) {
                 
                 VStack(alignment: .leading) {
