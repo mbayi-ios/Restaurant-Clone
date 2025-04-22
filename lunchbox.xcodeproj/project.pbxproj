@@ -14,6 +14,10 @@
 		CD51CE5C2DB7D81E00D647FD /* StoresConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */; };
 		CD51CE5E2DB7D82E00D647FD /* StoresConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */; };
 		CD51CE632DB7DB3B00D647FD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD51CE612DB7DB3B00D647FD /* Localizable.strings */; };
+		CD51CE672DB8212600D647FD /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE662DB8212600D647FD /* Theme.swift */; };
+		CD51CE692DB8215B00D647FD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE682DB8215B00D647FD /* Colors.swift */; };
+		CD51CE6B2DB8218900D647FD /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE6A2DB8218900D647FD /* Typography.swift */; };
+		CD51CE6D2DB821A400D647FD /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51CE6C2DB821A400D647FD /* Icons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfigurationState.swift; sourceTree = "<group>"; };
 		CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresConfiguration.swift; sourceTree = "<group>"; };
 		CD51CE622DB7DB3B00D647FD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CD51CE662DB8212600D647FD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CD51CE682DB8215B00D647FD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CD51CE6A2DB8218900D647FD /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		CD51CE6C2DB821A400D647FD /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -87,6 +95,10 @@
 				CD51CE592DB7D81200D647FD /* AppState.swift */,
 				CD51CE5B2DB7D81E00D647FD /* StoresConfigurationState.swift */,
 				CD51CE5D2DB7D82E00D647FD /* StoresConfiguration.swift */,
+				CD51CE662DB8212600D647FD /* Theme.swift */,
+				CD51CE6A2DB8218900D647FD /* Typography.swift */,
+				CD51CE6C2DB821A400D647FD /* Icons.swift */,
+				CD51CE682DB8215B00D647FD /* Colors.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,10 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD51CE6B2DB8218900D647FD /* Typography.swift in Sources */,
 				CD51CE542DB7D7DE00D647FD /* StoresConfigurationStore.swift in Sources */,
 				CD51CE582DB7D80100D647FD /* KeyStore.swift in Sources */,
 				CD51CE5C2DB7D81E00D647FD /* StoresConfigurationState.swift in Sources */,
+				CD51CE6D2DB821A400D647FD /* Icons.swift in Sources */,
+				CD51CE672DB8212600D647FD /* Theme.swift in Sources */,
 				CD51CE5E2DB7D82E00D647FD /* StoresConfiguration.swift in Sources */,
+				CD51CE692DB8215B00D647FD /* Colors.swift in Sources */,
 				CD51CE562DB7D7EC00D647FD /* DefaultKeyStore.swift in Sources */,
 				CD51CE5A2DB7D81200D647FD /* AppState.swift in Sources */,
 			);

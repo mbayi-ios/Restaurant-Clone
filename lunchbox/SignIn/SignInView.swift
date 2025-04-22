@@ -1,6 +1,9 @@
 import SwiftUI
 
+
+
 struct SignInView: View {
+    @Environment(\.theme) var theme: Theme
     @Environment(\.dependencies.tasks) var tasks
     @Environment(\.dismiss) var dismiss
     
@@ -61,7 +64,7 @@ struct SignInView: View {
     
     private func headerLabel() -> some View {
         VStack {
-            Image("logo")
+            theme.icons.base.brand
                 .resizable()
                 .scaledToFit()
                 .frame(width: 60, height: 60)
