@@ -28,21 +28,28 @@ class HTTPClient: NetworkClient {
     }
     
     func perform<Request: HTTPRequest>(_ request: Request, shouldSendAuthCookie: Bool = true) -> AnyPublisher<Request.Response, Error> {
+        
         guard let url = getValidRequestURL(for: request) else {
             return Fail(error: HTTPClientError.invalidBaseUrl).eraseToAnyPublisher()
         }
+       
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.allHTTPHeaderFields = getRequestHeaders(for: request, shouldSendAuthCookie: shouldSendAuthCookie)
         
+        print("encoded", urlRequest)
         if let httpBody = request.body {
             do {
                 urlRequest.httpBody = try encoder.encode(httpBody)
+                
             } catch {
                 return Fail(error: HTTPClientError.invalidBody).eraseToAnyPublisher()
             }
+            
         }
+        
+        print("request body", request.body)
         
         cancelDuplicateRequest(for: urlRequest)
         
@@ -56,7 +63,7 @@ class HTTPClient: NetworkClient {
     
     private func execute(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         session.dataTaskPublisher(for: request)
-            .tryMap { [weak self] (data, response) in
+            .tryMap { [weak self] (data, response) -> Data in
                 guard let self = self, let httpResponse = response as? HTTPURLResponse else {
                     throw HTTPClientError.unknown(statusCode: HTTPClient.badRequestHttpStatusCode, data: data)
                 }
@@ -123,9 +130,9 @@ extension HTTPClient {
     }
     
     private func saveCookies(from headers: [String: String], url: URL) {
+        // Get the cookies from the headers
         let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: url)
         
-        // Fix ME:
         for lbcookie in LBCookies.allCases {
             if let responseCookie = cookies.first(where: { $0.name == lbcookie.rawValue }) {
                 switch lbcookie {
