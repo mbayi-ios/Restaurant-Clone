@@ -30,25 +30,17 @@ class HTTPClient: NetworkClient
         self.session = session
     }
     
-    /// Perform HTTP Request
-    /// - Parameters:
-    ///   - request: request details
-    ///   - shouldSendAuthCookie: flag to send cookies in headers
-    /// - Returns: Parsed API Response or error
     func perform<Request: HTTPRequest>(_ request: Request, shouldSendAuthCookie: Bool = true) -> AnyPublisher<Request.Response, Error> {
         
-        // Get complete API url with params
         guard let url = getValidRequestURL(for: request) else {
             return Fail(error: HTTPClientError.invalidBaseUrl).eraseToAnyPublisher()
         }
-
-        // Start building request
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.allHTTPHeaderFields = getRequestHeaders(for: request, shouldSendAuthCookie: shouldSendAuthCookie)
 
         print("encoded", urlRequest)
-        // Set body of request
         if let httpBody = request.body {
             do {
                 urlRequest.httpBody = try encoder.encode(httpBody)
@@ -58,13 +50,8 @@ class HTTPClient: NetworkClient
             
         }
         
-        
-
-        // Throttle previous requests of same url
         cancelDuplicateRequest(for: urlRequest)
 
-        // Leave this here, as it makes it easier to debug the request.
-        // The cUrl will only log in debug mode.
         urlRequest.cUrlLogDebug()
 
         return execute(urlRequest)
@@ -72,10 +59,6 @@ class HTTPClient: NetworkClient
             .eraseToAnyPublisher()
     }
     
-    /// Execute API request and validate response
-    /// - Parameters:
-    ///   - request: request details
-    /// - Returns: Response data or error
     private func execute(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         session.dataTaskPublisher(for: request)
             .tryMap { [weak self] (data, response) -> Data in
@@ -121,7 +104,7 @@ extension HTTPClient {
         return components.url(relativeTo: baseUrl)
     }
     
-    // Returns request headers merged with cookies if required
+    
     private func getRequestHeaders<Request: HTTPRequest>(for request: Request, shouldSendAuthCookie: Bool) -> [String: String] {
         var headers: [String: String] = shouldSendAuthCookie ? context.headers : ((context as? NovadineMessageContext)?.noAuthHeaders ?? context.headers)
         
@@ -132,9 +115,6 @@ extension HTTPClient {
         return headers
     }
     
-    // If a task to the same URL for the same method is already outgoing,
-    // cancel the previous request. This way only the most recent request,
-    // which would be in theory most up to date, would work
     private func cancelDuplicateRequest(for urlRequest: URLRequest) {
         session.getAllTasks { tasks in
             if let task = tasks.first(where: {
@@ -151,7 +131,6 @@ extension HTTPClient {
 // MARK: - Response helper methods
 extension HTTPClient {
     
-    // Returns error object with API specific error info
     private func errorInfo(from data: Data, statusCode: Int) -> Error
     {
         if let errorResponse = try? self.decoder.decode(HTTPErrorValidationResponse.self, from: data) {
