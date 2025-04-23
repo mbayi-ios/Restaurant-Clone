@@ -2,8 +2,6 @@ import Foundation
 import Combine
 import UIKit
 
-
-
 class NovadineMessageContext: HTTPMessageContextual {
     
     static let sessionId = UUID().uuidString
@@ -90,8 +88,6 @@ class NovadineMessageContext: HTTPMessageContextual {
                 self.routeId = token
             }.store(in: &cancellables)
     }
-    
-
 }
 
 
