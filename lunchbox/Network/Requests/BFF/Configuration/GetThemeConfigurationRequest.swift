@@ -1,3 +1,4 @@
+import Foundation
 struct GetThemeConfigurationRequest: HTTPRequest {
     typealias Payload = GetThemeConfigurationPayload
     typealias Response = GetThemeConfigurationResponse

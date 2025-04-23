@@ -1,9 +1,12 @@
 import SwiftUI
+import Nuke
+import NukeUI
 
 
 
 struct SignInView: View {
     @Environment(\.theme) var theme: Theme
+    @Environment(\.dependencies.state.themeConfigurationState.themeConfiguration) var themeConfiguration
     @Environment(\.dependencies.tasks) var tasks
     @Environment(\.dismiss) var dismiss
     
@@ -63,7 +66,28 @@ struct SignInView: View {
     }
     
     private func headerLabel() -> some View {
-        VStack {
+        VStack( alignment: .center, spacing: 16) {
+            Text("logoUrl:")
+//            if let logoUrl = themeConfiguration?.settings?.themeImages?.logoUrl, let url = URL(string: logoUrl) {
+//               
+//                Group {
+//                    LazyImage(url: url, content: { state in
+//                        if let image = state.image {
+//                            image
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 160, height:80)
+//                        } else {
+//                            Spacer()
+//                        }
+//                    })
+//                    .onAppear {
+//                        print("🖼️ LazyImage will load from URL: \(url)")
+//                    }
+//                }
+//               
+//            }
+            
             theme.icons.base.brand
                 .resizable()
                 .scaledToFit()
@@ -74,6 +98,8 @@ struct SignInView: View {
                 .font(.system(size: 26))
                 .padding(.bottom, 5)
         }
+        
+        
     }
     private func createAccountLabel() -> some View  {
         HStack{

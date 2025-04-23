@@ -2,8 +2,15 @@ struct ThemeConfiguration: Codable {
     
     struct Settings: Codable {
         
-        struct HubMarketing: Codable, Equatable {
-            
+        struct ThemeImages: Codable {
+            let logoUrl: String?
+            let desktopLogoUrl: String?
+            let wordmark: String?
+            let startOrderPageImage: String?
+            let giftCardImage: String?
+        }
+       
+        struct HubMarketing: Codable{
             let image: String?
             let title: String?
             let buttonURL: String?
@@ -11,6 +18,7 @@ struct ThemeConfiguration: Codable {
             let description: String?
         }
         
+       // let themeImages: ThemeImages?
         let hubMarketing: [HubMarketing]?
     }
     

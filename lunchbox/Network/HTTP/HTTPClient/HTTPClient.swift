@@ -54,6 +54,7 @@ class HTTPClient: NetworkClient
 
         urlRequest.cUrlLogDebug()
 
+        print("network is being called")
         return execute(urlRequest)
             .decode(type: Request.Response.self, decoder: decoder)
             .eraseToAnyPublisher()
@@ -62,7 +63,7 @@ class HTTPClient: NetworkClient
     private func execute(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         session.dataTaskPublisher(for: request)
             .tryMap { [weak self] (data, response) -> Data in
-
+                print("hello")
                 // Validate response
                 guard let self = self, let httpResponse = response as? HTTPURLResponse else {
                     throw HTTPClientError.unknown(statusCode: HTTPClient.badRequestHttpStatusCode, data: data)

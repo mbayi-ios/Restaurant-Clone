@@ -15,7 +15,7 @@ class ThemeConfigurationRepository: Repository {
         
         return client.perform(request).tryMap { response in
             let configuration = ThemeConfiguration(response: response.data)
-            print("configuration")
+            
             
            self.store.storeThemeConfiguration(configuration)
             

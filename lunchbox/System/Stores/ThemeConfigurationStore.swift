@@ -1,12 +1,6 @@
-//
-//  ThemeConfigurationStore.swift
-//  lunchbox
-//
-//  Created by Ambrose Mbayi on 21/04/2025.
-//
-
 import SwiftUI
 import Combine
+import Foundation
 
 struct ThemeConfigurationStore {
     private static let themeConfigurationKey = "client_configuration"
@@ -28,14 +22,14 @@ struct ThemeConfigurationStore {
             themeConfiguration.send(nil)
             return
         }
-        print("data is \(data)")
-        
+       
         UserDefaults.standard.set(data, forKey: ThemeConfigurationStore.themeConfigurationKey)
         
         themeConfiguration.send(configuration)
     }
     
     private func storedThemeConfiguration() -> ThemeConfiguration? {
+        print("we get here again")
         guard let data = UserDefaults.standard.data(forKey: ThemeConfigurationStore.themeConfigurationKey),
               let configuration = try? decoder.decode(ThemeConfiguration.self, from: data) else {
             return nil
